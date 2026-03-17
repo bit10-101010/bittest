@@ -6,7 +6,7 @@ import requests
 from pymongo import ASCENDING, MongoClient
 
 # fish_host = 'http://localhost:6543'
-fish_host = "http://94.198.98.239"  # 'http://tests.stockfishchess.org'
+fish_host = "http://94.198.98.239"  # 'http://tests.bitchess.org'
 
 conn = MongoClient("localhost")
 

@@ -18,7 +18,7 @@ the development workflow and coding standards for the project.
 
 ```bash
 # Clone the repository
-git clone https://github.com/official-stockfish/fishtest.git
+git clone https://github.com/official-bit/fishtest.git
 cd fishtest
 
 # Install development dependencies (pre-commit, ruff, ty)
@@ -134,6 +134,6 @@ fishtest/
 - [Architecture Overview](docs/1-architecture.md) — server design and
   threading model.
 - [API Reference](docs/3-api-reference.md) — worker API endpoints.
-- [Wiki Contributing Page](https://github.com/official-stockfish/fishtest/wiki/Contributing-to-Fishtest) - development environment setup, coding styles, development wrokflow.
-- [Coding Style Guide (Issue #634)](https://github.com/official-stockfish/fishtest/issues/634)
+- [Wiki Contributing Page](https://github.com/official-bit/fishtest/wiki/Contributing-to-Fishtest) - development environment setup, coding styles, development wrokflow.
+- [Coding Style Guide (Issue #634)](https://github.com/official-bit/fishtest/issues/634)
   — original style discussion.

@@ -19,9 +19,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://tests.stockfishchess.org"
-Repository = "https://github.com/official-stockfish/fishtest"
-Issues = "https://github.com/official-stockfish/fishtest"
+Homepage = "https://tests.bitchess.org"
+Repository = "https://github.com/official-bit/fishtest"
+Issues = "https://github.com/official-bit/fishtest"
 
 [build-system]
 requires = ["hatchling>=1.27.0"]

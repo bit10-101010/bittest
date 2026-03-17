@@ -28,7 +28,7 @@ class TestHttpUsers(unittest.TestCase):
             cls.username,
             cls.password,
             "email@email.email",
-            "https://github.com/official-stockfish/Stockfish",
+            "https://github.com/official-bit/Bit",
         )
 
     def setUp(self):
@@ -63,7 +63,7 @@ class TestHttpUsers(unittest.TestCase):
             base_nets=["nn-0000000000a0.nnue"],
             new_nets=["nn-0000000000a0.nnue"],
             rescheduled_from="653db116cc309ae839563103",
-            tests_repo="https://github.com/official-stockfish/Stockfish",
+            tests_repo="https://github.com/official-bit/Bit",
             auto_purge=False,
             username=self.username,
             start_time=datetime.now(UTC),
@@ -179,7 +179,7 @@ class TestHttpUsers(unittest.TestCase):
                     "password": self.signup_password,
                     "password2": self.signup_password,
                     "email": "joe@user.net",
-                    "tests_repo": "https://github.com/official-stockfish/Stockfish",
+                    "tests_repo": "https://github.com/official-bit/Bit",
                     "g-recaptcha-response": "captcha-ok",
                     "csrf_token": csrf,
                 },
@@ -201,7 +201,7 @@ class TestHttpUsers(unittest.TestCase):
                 "password": long_password,
                 "password2": long_password,
                 "email": "joe@user.net",
-                "tests_repo": "https://github.com/official-stockfish/Stockfish",
+                "tests_repo": "https://github.com/official-bit/Bit",
                 "csrf_token": csrf,
             },
             follow_redirects=False,
@@ -303,7 +303,7 @@ class TestHttpUsers(unittest.TestCase):
                 "password": "badpass",
                 "password2": "badpass",
                 "email": "nouser@example.com",
-                "tests_repo": "https://github.com/official-stockfish/Stockfish",
+                "tests_repo": "https://github.com/official-bit/Bit",
             },
             follow_redirects=False,
         )

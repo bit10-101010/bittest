@@ -1,6 +1,6 @@
 {% extends "base.html.j2" %}
 
-{% block title %}Create New Test | Stockfish Testing{% endblock %}
+{% block title %}Create New Test | Bit Testing{% endblock %}
 
 {% block body %}
 {% set elo_model = "normalized" %}
@@ -26,7 +26,7 @@
   <h2>Create New Test</h2>
   <div class="instructions" style="margin-bottom: 35px">
     Please read the
-    <a href="https://github.com/official-stockfish/fishtest/wiki/Creating-my-first-test">Testing Guidelines</a>
+    <a href="https://github.com/official-bit/fishtest/wiki/Creating-my-first-test">Testing Guidelines</a>
     before creating your test.
   </div>
 </header>
@@ -212,7 +212,7 @@
                   id="tests-repo"
                   class="form-control"
                   value="{{ tests_repo_value }}" {{ "readonly" if is_rerun else "" }}
-                  placeholder="https://github.com/username/Stockfish"
+                  placeholder="https://github.com/username/Bit"
                 >
               </div>
 
@@ -488,7 +488,7 @@
                       </div>
                       <div class="modal-body text-break">
                         Checking this option will rewrite the hyperparameters furnished by the tuning
-                        code in Stockfish in such a way that the SPSA tune will finish within 0.5 Elo
+                        code in Bit in such a way that the SPSA tune will finish within 0.5 Elo
                         from the optimum (with 95% probability) assuming the function
                         <span class="text-nowrap">'parameters-&gt;Elo'</span> is quadratic and varies
                         2 Elo per parameter over each specified parameter interval. The

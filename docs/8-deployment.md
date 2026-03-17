@@ -15,7 +15,7 @@
 |----------|----------|---------|-------------|
 | `FISHTEST_PORT` | Yes | `-1` | Port for this instance |
 | `FISHTEST_PRIMARY_PORT` | Yes | `-1` | Fixed primary port (typically 8000) |
-| `FISHTEST_URL` | Dev: No; Prod: Yes | -- | Public URL (e.g., `https://tests.stockfishchess.org`); may be empty in development for dynamic host/IP |
+| `FISHTEST_URL` | Dev: No; Prod: Yes | -- | Public URL (e.g., `https://tests.bitchess.org`); may be empty in development for dynamic host/IP |
 | `FISHTEST_NN_URL` | No | (unset => request host; empty => same-host) | Base URL workers use to download neural networks (see below) |
 | `FISHTEST_AUTHENTICATION_SECRET` | Yes | -- | Cookie signing secret (itsdangerous) |
 | `FISHTEST_CAPTCHA_SECRET` | No | -- | reCAPTCHA secret key for signup |
@@ -81,7 +81,7 @@ secret and the reCAPTCHA secret.
 | (empty) | Server uses same-host relative redirects (`/nn/<id>`) |
 | `https://SERVER_NAME` | Workers download directly from this origin |
 | `https://CDN_HOSTNAME` | Workers download via a CDN in front of this origin |
-| `https://data.stockfishchess.org` | Workers download via the official fishtest CDN |
+| `https://data.bitchess.org` | Workers download via the official fishtest CDN |
 
 Note: `systemd` `Environment="FISHTEST_NN_URL=..."` always sets the variable.
 If you want the (unset) behavior, omit that `Environment=` line.
@@ -243,8 +243,8 @@ absorbs thundering-herd reconnection bursts from large worker fleets.
 File: `/etc/nginx/sites-available/fishtest.conf`
 
 Copy the following file as-is. Replace every occurrence of `SERVER_NAME` with
-the actual domain name (e.g. `tests.stockfishchess.org`) and `CDN_HOSTNAME`
-with the Cloudflare-proxied CDN hostname (e.g. `data.stockfishchess.org`).
+the actual domain name (e.g. `tests.bitchess.org`) and `CDN_HOSTNAME`
+with the Cloudflare-proxied CDN hostname (e.g. `data.bitchess.org`).
 Omit `CDN_HOSTNAME` from the `server_name` directive if no CDN is used.
 Adjust Let's Encrypt certificate paths if needed.
 

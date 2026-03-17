@@ -42,7 +42,7 @@ class TestHttpApi(unittest.TestCase):
             cls.username,
             cls.password,
             "email@email.email",
-            "https://github.com/official-stockfish/Stockfish",
+            "https://github.com/official-bit/Bit",
         )
         user = cls.rundb.userdb.get_user(cls.username)
         user["pending"] = False
@@ -150,7 +150,7 @@ class TestHttpApi(unittest.TestCase):
             base_nets=["nn-0000000000a0.nnue"],
             new_nets=["nn-0000000000a0.nnue"],
             rescheduled_from="653db116cc309ae839563103",
-            tests_repo="https://github.com/official-stockfish/Stockfish",
+            tests_repo="https://github.com/official-bit/Bit",
             auto_purge=False,
             username=self.username,
             start_time=datetime.now(UTC),

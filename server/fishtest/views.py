@@ -403,13 +403,13 @@ def worker_email(worker_name, blocker_name, message, host_url, blocked):
     body = f"""\
 Dear {owner_name},
 
-Thank you for contributing to the development of Stockfish. Unfortunately, it seems your Fishtest worker {worker_name} has some issue(s). More specifically the following has been reported:
+Thank you for contributing to the development of Bit. Unfortunately, it seems your Fishtest worker {worker_name} has some issue(s). More specifically the following has been reported:
 
 {message}
 
 You may possibly find more information about this in our event log at {host_url}/actions
 
-Feel free to reply to this email if you require any help, or else contact the #fishtest-dev channel on the Stockfish Discord server: https://discord.com/invite/awnh2qZfTT
+Feel free to reply to this email if you require any help, or else contact the #fishtest-dev channel on the Bit Discord server: https://discord.com/invite/awnh2qZfTT
 
 Enjoy your day,
 
@@ -564,7 +564,7 @@ def upload(request):
         return result
     base_context = {
         "upload_url": str(request.url),
-        "testing_guidelines_url": "https://github.com/official-stockfish/fishtest/wiki/Creating-my-first-test",
+        "testing_guidelines_url": "https://github.com/official-bit/fishtest/wiki/Creating-my-first-test",
         "cc0_url": "https://creativecommons.org/share-your-work/public-domain/cc0/",
         "nn_stats_url": "/nns",
     }
@@ -1239,7 +1239,7 @@ def contributors_monthly(request):
 
 
 def get_master_info(
-    user="official-stockfish", repo="Stockfish", ignore_rate_limit=False
+    user="official-bit", repo="Bit", ignore_rate_limit=False
 ):
     # Contract: always return a dict with stable keys so templates/callers do
     # not crash when GitHub is transiently unavailable.
@@ -1485,9 +1485,9 @@ def validate_form(request):
     username = request.authenticated_userid
     u = request.userdb.get_user(username)
 
-    # Deal with people that have forked from "mcostalba/Stockfish" instead
-    # of from "official-stockfish/Stockfish".
-    official_repo = "https://github.com/official-stockfish/Stockfish"
+    # Deal with people that have forked from "mcostalba/Bit" instead
+    # of from "official-bit/Bit".
+    official_repo = "https://github.com/official-bit/Bit"
     master_repo = official_repo
     try:
         master_repo = gh.get_master_repo(user, repo, ignore_rate_limit=True)
@@ -1506,11 +1506,11 @@ def validate_form(request):
             )
             suffix_soft = (
                 "Please consider replacing your repo with one forked from the official "
-                "Stockfish repo!"
+                "Bit repo!"
             )
             suffix_hard = (
                 "Please replace your repo with one forked from the official "
-                "Stockfish repo!"
+                "Bit repo!"
             )
             if u["registration_time"] >= datetime(2025, 7, 1, tzinfo=UTC):
                 raise Exception(message + " " + suffix_hard)
@@ -2399,7 +2399,7 @@ def tests_view(request):
         warnings.append(f"this test uses a small book with only {book_exits} exits")
     if "master_repo" in run["args"]:  # if present then it is non-standard
         warnings.append(
-            "the developer repository is not forked from official-stockfish/Stockfish"
+            "the developer repository is not forked from official-bit/Bit"
         )
 
     def allow_github_api_calls():
@@ -2423,7 +2423,7 @@ def tests_view(request):
         print(f"Unable to normalize_repo: {str(e)}")
 
     anchor_url = gh.compare_branches_url(
-        user1="official-stockfish",
+        user1="official-bit",
         branch1=gh.official_master_sha,
         user2=user,
         branch2=run["args"]["resolved_base"],
@@ -2591,7 +2591,7 @@ def _build_run_tables_context(
     toggle_states = _build_toggle_states(request, toggle_names)
     finished_title_text = (
         f"{username + ' - ' if username else ''}Finished Tests"
-        f" - page {page_idx + 1} | Stockfish Testing"
+        f" - page {page_idx + 1} | Bit Testing"
     )
 
     return {
@@ -2631,7 +2631,7 @@ def tests_finished(request):
     page_idx = context.get("page_idx", 0)
     title_suffix = context.get("title_suffix", "")
     title_text = (
-        f"Finished Tests{title_suffix} - page {page_idx + 1} | Stockfish Testing"
+        f"Finished Tests{title_suffix} - page {page_idx + 1} | Bit Testing"
     )
     return {
         **context,

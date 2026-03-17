@@ -169,8 +169,8 @@ def trim_files(testing_dir, source_dir=None):
     backup_pattern = (
         # (pattern, num_backups, expiration_in_days, only_update)
         ("fastchess" + EXE_SUFFIX, 1, math.inf, False),
-        ("stockfish-*-old" + EXE_SUFFIX, 0, -1, True),
-        ("stockfish-*" + EXE_SUFFIX, 50, 30, False),
+        ("bit-*-old" + EXE_SUFFIX, 0, -1, True),
+        ("bit-*" + EXE_SUFFIX, 50, 30, False),
         ("nn-*.nnue", 10, 30, False),
         ("results-*.pgn", 10, 30, False),
         ("*.epd", 4, 365, False),
@@ -581,7 +581,7 @@ def get_cpu_features(engine):
 
 
 def download_from_github_raw(
-    item, owner="official-stockfish", repo="books", branch="master"
+    item, owner="official-bit", repo="books", branch="master"
 ):
     item_url = f"{RAWCONTENT_HOST}/{owner}/{repo}/{branch}/{item}"
     print(f"Downloading {item_url}...")
@@ -589,7 +589,7 @@ def download_from_github_raw(
 
 
 def download_from_github_api(
-    item, owner="official-stockfish", repo="books", branch="master"
+    item, owner="official-bit", repo="books", branch="master"
 ):
     item_url = f"{API_HOST}/repos/{owner}/{repo}/contents/{item}?ref={branch}"
     print(f"Downloading {item_url}...")
@@ -598,7 +598,7 @@ def download_from_github_api(
 
 
 def download_from_github(
-    item, owner="official-stockfish", repo="books", branch="master"
+    item, owner="official-bit", repo="books", branch="master"
 ):
     try:
         blob = download_from_github_raw(item, owner=owner, repo=repo, branch=branch)
@@ -843,7 +843,7 @@ def setup_engine(
 ):
     compiler_ver = compiler + "_" + str("_".join([str(s) for s in version]))
     env, env_hash = create_environment()
-    engine_name = "-".join(["stockfish", sha, compiler_ver, env_hash])
+    engine_name = "-".join(["bit", sha, compiler_ver, env_hash])
     engine_path = (testing_dir / (engine_name + "-old")).with_suffix(EXE_SUFFIX)
     engine_path_native = (testing_dir / engine_name).with_suffix(EXE_SUFFIX)
     for path in (engine_path_native, engine_path):
@@ -955,7 +955,7 @@ def setup_engine(
         if engine_path.exists():
             raise FatalException("Another worker is running in the same directory!")
         else:
-            (build_dir / "stockfish").with_suffix(EXE_SUFFIX).replace(engine_path)
+            (build_dir / "bit").with_suffix(EXE_SUFFIX).replace(engine_path)
     finally:
         os.chdir(worker_dir)
         shutil.rmtree(tmp_dir)
@@ -1004,7 +1004,7 @@ def adjust_tc(tc, factor):
     else:
         time_tc = float(chunks[0])
 
-    # Rebuild scaled_tc now: cutechess-cli and stockfish parse 3 decimal places.
+    # Rebuild scaled_tc now: cutechess-cli and bit parse 3 decimal places.
     scaled_tc = f"{time_tc * factor:.3f}"
     tc_limit = time_tc * factor * 3
     if increment > 0.0:
@@ -1159,7 +1159,7 @@ def parse_fastchess_output(
                 post_to_worker_log(worker_info, password, remote, message)
 
         # Parse line like this:
-        # Finished game 1 (stockfish vs base): 0-1 {White disconnects}
+        # Finished game 1 (bit vs base): 0-1 {White disconnects}
         if "disconnect" in line or "stall" in line:
             result["stats"]["crashes"] += 1
 
@@ -1592,9 +1592,9 @@ def run_games(
     if run_errors:
         raise RunException("\n".join(run_errors))
 
-    # Fishtest with Stockfish 11 used 1.6 Mnps as the reference and 0.7 Mnps
+    # Fishtest with Bit 11 used 1.6 Mnps as the reference and 0.7 Mnps
     # as the slow-worker threshold. The new reference (628000 nps) and
-    # threshold (180000 nps) result from comparing Stockfish 11 vs Stockfish 18
+    # threshold (180000 nps) result from comparing Bit 11 vs Bit 18
     # bench values across several architectures and machines.
     # Benches employed clang++ 21.1.8, parallel bench at depth 13, 100 iterations.
     # Reference cores are Ryzen 7 PRO 7840U / Xeon E5-2680 v3; the slow-worker

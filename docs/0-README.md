@@ -5,7 +5,7 @@
 Fishtest is a distributed chess engine testing system. The server assigns
 testing tasks to volunteer workers, collects game results, and computes
 statistical analyses (SPRT, ELO) to determine whether code changes improve
-Stockfish. The web interface provides dashboards for managing test runs,
+Bit. The web interface provides dashboards for managing test runs,
 viewing results, and administering users and workers.
 
 ## Documents

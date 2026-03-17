@@ -37,8 +37,8 @@ class CreateGitHubApiTest(unittest.TestCase):
                 r"[1-9]\d{5,7}|None",
                 str(
                     get_master_info(
-                        user="official-stockfish",
-                        repo="Stockfish",
+                        user="official-bit",
+                        repo="Bit",
                     )["bench"]
                 ),
             )
@@ -192,7 +192,7 @@ class GetShaRobustnessTests(unittest.TestCase):
             "fishtest.views.gh.get_commit",
             return_value=None,
         ):
-            sha, message = get_sha("master", "https://github.com/user/Stockfish")
+            sha, message = get_sha("master", "https://github.com/user/Bit")
 
         self.assertEqual(sha, "")
         self.assertEqual(message, "")
@@ -202,7 +202,7 @@ class GetShaRobustnessTests(unittest.TestCase):
             "fishtest.views.gh.get_commit",
             return_value={"commit": {"message": "hello"}},
         ):
-            sha, message = get_sha("master", "https://github.com/user/Stockfish")
+            sha, message = get_sha("master", "https://github.com/user/Bit")
 
         self.assertEqual(sha, "")
         self.assertEqual(message, "")
@@ -212,7 +212,7 @@ class GetShaRobustnessTests(unittest.TestCase):
             "fishtest.views.gh.get_commit",
             return_value={"sha": "a" * 40, "commit": {}},
         ):
-            sha, message = get_sha("master", "https://github.com/user/Stockfish")
+            sha, message = get_sha("master", "https://github.com/user/Bit")
 
         self.assertEqual(sha, "a" * 40)
         self.assertEqual(message, "")
@@ -222,7 +222,7 @@ class GetShaRobustnessTests(unittest.TestCase):
             "fishtest.views.gh.get_commit",
             return_value={"sha": "b" * 40, "commit": {"message": None}},
         ):
-            sha, message = get_sha("master", "https://github.com/user/Stockfish")
+            sha, message = get_sha("master", "https://github.com/user/Bit")
 
         self.assertEqual(sha, "b" * 40)
         self.assertEqual(message, "")

@@ -65,7 +65,7 @@ from updater import update
 
 LOCK_FILE = Path(__file__).resolve().parent / "fishtest_worker.lock"
 
-# Minimum requirement of compiler version for Stockfish.
+# Minimum requirement of compiler version for Bit.
 MIN_GCC_MAJOR = 9
 MIN_GCC_MINOR = 3
 
@@ -118,9 +118,9 @@ games.py  :             parse_fastchess_output()
 Apis used by the worker
 =======================
 
-<fishtest>     = https://tests.stockfishchess.org
+<fishtest>     = https://tests.bitchess.org
 <github>       = https://api.github.com
-<github-books> = <github>/repos/official-stockfish/books
+<github-books> = <github>/repos/official-bit/books
 
 Heartbeat           <fishtest>/api/beat                                         POST
 
@@ -629,7 +629,7 @@ def setup_parameters(worker_dir):
         ("login", "username", "", str, None),
         ("login", "password", "", str, None),
         ("parameters", "protocol", "https", ["http", "https"], None),
-        ("parameters", "host", "tests.stockfishchess.org", str, None),
+        ("parameters", "host", "tests.bitchess.org", str, None),
         ("parameters", "port", "443", int, None),
         (
             "parameters",
@@ -1174,8 +1174,8 @@ def get_worker_arch(worker_dir):
     try:
         blob = download_from_github(
             item="scripts/get_native_properties.sh",
-            owner="official-stockfish",
-            repo="Stockfish",
+            owner="official-bit",
+            repo="Bit",
             branch="master",
         )
         with open("get_native_properties.sh", "w") as f:

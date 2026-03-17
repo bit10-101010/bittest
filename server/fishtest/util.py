@@ -582,7 +582,7 @@ def tests_repo(run):
     else:
         # very old tests didn't have a separate
         # tests repo
-        return "https://github.com/official-stockfish/Stockfish"
+        return "https://github.com/official-bit/Bit"
 
 
 def diff_url(run, master_check=True):
@@ -590,7 +590,7 @@ def diff_url(run, master_check=True):
     user2, repo = gh.parse_repo(tests_repo_)
     sha2 = run["args"]["resolved_new"]
     if "spsa" in run["args"]:
-        user1 = "official-stockfish"
+        user1 = "official-bit"
         sha1 = gh.official_master_sha
     else:
         user1 = user2
@@ -606,9 +606,9 @@ def diff_url(run, master_check=True):
             )
         else:
             if im1:
-                user1 = "official-stockfish"
+                user1 = "official-bit"
             if im2:
-                user2 = "official-stockfish"
+                user2 = "official-bit"
     return gh.compare_branches_url(user1=user1, branch1=sha1, user2=user2, branch2=sha2)
 
 
@@ -642,9 +642,9 @@ supported_compilers = ["clang++", "g++"]
 
 
 # List of architectures extracted from the output of "make help"
-# in the src directory of the Stockfish source code.
+# in the src directory of the Bit source code.
 # The worker compiles with "make ARCH=native", which uses
-# the output of Stockfish script "get_native_properties.sh".
+# the output of Bit script "get_native_properties.sh".
 # Architectures not covered by the script must be listed as commented out.
 
 supported_arches = [

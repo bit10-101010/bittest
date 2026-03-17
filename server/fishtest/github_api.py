@@ -136,7 +136,7 @@ def call(url, *args, _method="GET", _ignore_rate_limit=False, **kwargs):
 
 
 def _download_from_github_raw(
-    item, user="official-stockfish", repo="Stockfish", branch="master"
+    item, user="official-bit", repo="Bit", branch="master"
 ):
     item_url = f"https://raw.githubusercontent.com/{user}/{repo}/{branch}/{item}"
     r = call(item_url, timeout=TIMEOUT, _ignore_rate_limit=True)
@@ -146,8 +146,8 @@ def _download_from_github_raw(
 
 def _download_from_github_api(
     item,
-    user="official-stockfish",
-    repo="Stockfish",
+    user="official-bit",
+    repo="Bit",
     branch="master",
     ignore_rate_limit=False,
 ):
@@ -166,8 +166,8 @@ def _download_from_github_api(
 
 def download_from_github(
     item,
-    user="official-stockfish",
-    repo="Stockfish",
+    user="official-bit",
+    repo="Bit",
     branch="master",
     method="api",
     ignore_rate_limit=False,
@@ -187,8 +187,8 @@ def download_from_github(
 
 
 def get_commit(
-    user="official-stockfish",
-    repo="Stockfish",
+    user="official-bit",
+    repo="Bit",
     branch="master",
     ignore_rate_limit=False,
 ):
@@ -199,7 +199,7 @@ def get_commit(
     return commit
 
 
-def get_commits(user="official-stockfish", repo="Stockfish", ignore_rate_limit=False):
+def get_commits(user="official-bit", repo="Bit", ignore_rate_limit=False):
     url = f"https://api.github.com/repos/{user}/{repo}/commits"
     r = call(url, timeout=TIMEOUT, _ignore_rate_limit=ignore_rate_limit)
     r.raise_for_status()
@@ -236,7 +236,7 @@ def rate_limit():
     cache=_lru_cache, key=lambda f, args, kw: (f.__name__, kw["sha1"], kw["sha2"])
 )
 def compare_sha(
-    user1="official-stockfish",
+    user1="official-bit",
     sha1=None,
     user2=None,
     sha2=None,
@@ -245,7 +245,7 @@ def compare_sha(
     # Note that although it happens very rarely, this function may give a github
     # error and then succeed on the next try.
     # See e.g.
-    # https://tests.stockfishchess.org/actions?max_actions=1&before=1767274733.476365
+    # https://tests.bitchess.org/actions?max_actions=1&before=1767274733.476365
     # This sadly prevents us from using negative caching.
 
     # Non sha arguments cannot be safely cached
@@ -256,8 +256,8 @@ def compare_sha(
         user2 = user1
 
     url = (
-        "https://api.github.com/repos/official-stockfish/"
-        f"Stockfish/compare/{user1}:{sha1}...{user2}:{sha2}"
+        "https://api.github.com/repos/official-bit/"
+        f"Bit/compare/{user1}:{sha1}...{user2}:{sha2}"
     )
     r = call(
         url,
@@ -275,7 +275,7 @@ def parse_repo(repo_url):
 
 
 def get_merge_base_commit(
-    user1="official-stockfish",
+    user1="official-bit",
     sha1=None,
     user2=None,
     sha2=None,
@@ -294,7 +294,7 @@ def get_merge_base_commit(
 
 
 def is_ancestor(
-    user1="official-stockfish",
+    user1="official-bit",
     sha1=None,
     user2=None,
     sha2=None,
@@ -349,7 +349,7 @@ def is_master(sha, ignore_rate_limit=False):
 
 
 def get_master_repo(
-    user="official-stockfish", repo="Stockfish", ignore_rate_limit=False
+    user="official-bit", repo="Bit", ignore_rate_limit=False
 ):
     api_url = f"https://api.github.com/repos/{user}/{repo}"
     r = call(api_url, timeout=TIMEOUT, _ignore_rate_limit=ignore_rate_limit)
@@ -376,17 +376,17 @@ def normalize_repo(repo):
 
 
 def compare_branches_url(
-    user1="stockfish-chess", branch1="master", user2=None, branch2=None
+    user1="bit-chess", branch1="master", user2=None, branch2=None
 ):
     if user2 is None:
         user2 = user1
     return (
-        "https://github.com/official-stockfish/Stockfish/"
+        "https://github.com/official-bit/Bit/"
         f"compare/{user1}:{branch1}...{user2}:{branch2}"
     )
 
 
-def commit_url(user="official-stockfish", repo="Stockfish", branch="master"):
+def commit_url(user="official-bit", repo="Bit", branch="master"):
     return f"https://github.com/{user}/{repo}/commit/{branch}"
 
 
@@ -397,7 +397,7 @@ def update_official_master_sha():
         official_master_sha = response["sha"]
     except Exception as e:
         print(
-            f"Unable to obtain the official stockfish master sha: {str(e)}",
+            f"Unable to obtain the official bit master sha: {str(e)}",
             flush=True,
         )
     if official_master_sha != _dummy_sha:

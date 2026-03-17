@@ -4,7 +4,7 @@
 
 The worker is a standalone Python application (Python >= 3.8) that runs on
 contributor machines. It fetches testing tasks from the fishtest server,
-compiles Stockfish from source, runs games via fastchess, and reports
+compiles Bit from source, runs games via fastchess, and reports
 results back.
 
 Source files:
@@ -129,7 +129,7 @@ password = mypassword
 
 [parameters]
 protocol = https                          ; http or https
-host = tests.stockfishchess.org
+host = tests.bitchess.org
 port = 443
 concurrency = max(1,min(3,MAX-1))         ; expression using MAX = cpu_count
 max_memory = MAX/2                        ; expression using MAX = total_ram_MiB
@@ -156,7 +156,7 @@ Usage: `python worker.py [USERNAME PASSWORD] [OPTIONS]`
 | Flag | Short | Type | Default | Description |
 |------|-------|------|---------|-------------|
 | `--protocol` | `-P` | `{http,https}` | `https` | Protocol for server communication |
-| `--host` | `-n` | string | `tests.stockfishchess.org` | Server hostname |
+| `--host` | `-n` | string | `tests.bitchess.org` | Server hostname |
 | `--port` | `-p` | int | `443` | Server port |
 | `--concurrency` | `-c` | expression | `max(1,min(3,MAX-1))` | Max cores to use (`MAX` = cpu_count) |
 | `--max_memory` | `-m` | expression | `MAX/2` | Max memory in MiB (`MAX` = total RAM) |
@@ -241,7 +241,7 @@ networks). Writes use atomic `link()` to avoid partial-file races.
 | Pattern | Keep | Expiration |
 |---------|------|------------|
 | `fastchess` | 1 | never |
-| `stockfish-*` | 50 | 30 days |
+| `bit-*` | 50 | 30 days |
 | `nn-*.nnue` | 10 | 30 days |
 | `results-*.pgn` | 10 | 30 days |
 | `*.epd` | 4 | 365 days |
@@ -277,7 +277,7 @@ key.
 | `https://api.github.com/rate_limit` | GET | Check remaining API quota |
 | `https://api.github.com/repos/Disservin/fastchess/zipball/{sha}` | GET | Download fastchess source |
 | `https://api.github.com/repos/{user}/{repo}/zipball/{sha}` | GET | Download engine source |
-| `https://api.github.com/repos/official-stockfish/books/...` | GET | Download opening books |
+| `https://api.github.com/repos/official-bit/books/...` | GET | Download opening books |
 | `https://raw.githubusercontent.com/...` | GET | Download files (fallback) |
 
 ## Exception hierarchy
@@ -298,7 +298,7 @@ The worker writes to `api.log` in its working directory. Each line records
 the server-side and worker-side latency of API calls:
 
 ```
-2025-01-15 12:00:00+00:00 : 1.23 ms (s)  45.67 ms (w)  https://tests.stockfishchess.org/api/update_task
+2025-01-15 12:00:00+00:00 : 1.23 ms (s)  45.67 ms (w)  https://tests.bitchess.org/api/update_task
 ```
 
 On self-update, the log is rotated to `api.log.previous`.

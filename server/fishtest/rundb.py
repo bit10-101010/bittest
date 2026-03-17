@@ -1014,7 +1014,7 @@ Request_task: This worker has been blocked!
 You may possibly find more information at
 {host_url}/actions?text=%22{worker_name}%22.
 If you require help, feel free to contact the #fishtest-dev channel on
-the Stockfish Discord server: https://discord.com/invite/awnh2qZfTT.
+the Bit Discord server: https://discord.com/invite/awnh2qZfTT.
 After fixing the issues you can unblock the worker at
 {host_url}/workers/{worker_name}.
 **********************************************************************
@@ -1194,7 +1194,7 @@ After fixing the issues you can unblock the worker at
                 # We use a timeout to protect against redos attacks.
                 # The timeout of 100ms should never trigger with a legitimate
                 # arch string.
-                # See https://github.com/official-stockfish/fishtest/pull/2428#issuecomment-3715147268
+                # See https://github.com/official-bit/fishtest/pull/2428#issuecomment-3715147268
                 try:
                     if arch_filter_re.search(worker_arch, timeout=0.1) is None:
                         continue

@@ -4,7 +4,7 @@
 
 Fishtest is a distributed chess engine testing infrastructure. The server:
 
-1. Accepts test submissions from developers (new Stockfish patches).
+1. Accepts test submissions from developers (new Bit patches).
 2. Assigns work units (tasks) to volunteer worker machines.
 3. Collects game results and computes statistical tests (SPRT, ELO).
 4. Publishes results through a web dashboard and a JSON API.
